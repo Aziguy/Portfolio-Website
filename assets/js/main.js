@@ -7,6 +7,7 @@
 /* Validate If Constant Exists */
 
 /*=============== SKILLS TABS ===============*/
+
 const tabs = document.querySelectorAll("[data-target]"),
   tabContent = document.querySelectorAll("[data-content]");
 
@@ -30,9 +31,51 @@ tabs.forEach((tab) => {
 
 /*=============== MIXITUP FILTER PORTFOLIO ===============*/
 
+let mixerPortfolio = mixitup(".work__container", {
+  selectors: {
+    target: ".work__card",
+  },
+  animation: {
+    duration: 300,
+  },
+});
+
 /*===== Link Active Work =====*/
 
+const linkWork = document.querySelectorAll(".work__item");
+
+function activeWork() {
+  linkWork.forEach((l) => l.classList.remove("active-work"));
+  this.classList.add("active-work");
+}
+
+linkWork.forEach((l) => l.addEventListener("click", activeWork));
+
 /*===== Work Popup =====*/
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("work__button")) {
+    tooglePortfolioPopup();
+    portfolioItemDetails(e.target.parentElement);
+  }
+});
+
+function tooglePortfolioPopup() {
+  document.querySelector(".portfolio__popup").classList.toggle("open");
+}
+
+document
+  .querySelector(".portfolio__popup-close")
+  .addEventListener("click", tooglePortfolioPopup);
+
+function portfolioItemDetails(portfolioItem) {
+  document.querySelector(".pp__thumbnail img").src =
+    portfolioItem.querySelector(".work__img").src;
+  document.querySelector(".portfolio__popup-subtitle span").innerHTML =
+    portfolioItem.querySelector(".portfolio__title").innerHTML;
+  document.querySelector(".portfolio__popup-body").innerHTML =
+    portfolioItem.querySelector(".portfolio__item-details").innerHTML;
+}
 
 /*=============== SERVICES MODAL ===============*/
 
