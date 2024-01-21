@@ -77,9 +77,29 @@ function portfolioItemDetails(portfolioItem) {
     portfolioItem.querySelector(".portfolio__item-details").innerHTML;
 }
 
-/*=============== SERVICES MODAL ===============*/
+/*=============== CERTIFICATIONS MODAL ===============*/
+const modalViews = document.querySelectorAll(".certifications__modal"),
+  modelBtns = document.querySelectorAll(".certifications__button"),
+  modalCloses = document.querySelectorAll(".certifications__modal-close");
 
-/*=============== SWIPER TESTIMONIAL ===============*/
+let modal = function (modalClick) {
+  modalViews[modalClick].classList.add("active-modal");
+};
+
+modelBtns.forEach((modelBtn, i) => {
+  modelBtn.addEventListener("click", () => {
+    console.log("click");
+    modal(i);
+  });
+});
+
+modalCloses.forEach((modalClose) => {
+  modalClose.addEventListener("click", () => {
+    modalViews.forEach((modalView) => {
+      modalView.classList.remove("active-modal");
+    });
+  });
+});
 
 /*=============== INPUT ANIMATION ===============*/
 
